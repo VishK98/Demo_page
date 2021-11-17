@@ -20,8 +20,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  var _selectedDropDownValue =  "A";
-
+  int _selectedDropDownValue =  1;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,7 +29,7 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.grey[300] ,
           appBar: AppBar(
             backgroundColor: Colors.blueAccent,
-            leading: const Icon(Icons.menu),
+            leading: const Icon(Icons.menu,),
             actions: [
               SizedBox(
                 width: 35,
@@ -41,6 +40,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ],
           ),
+
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -53,24 +53,24 @@ class _MyAppState extends State<MyApp> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
-                        height:50, //height of button
-                        width:150,
+                        height:40, //height of button
+                        width:170,
                         child: ElevatedButton.icon(
                           onPressed: () { },
                           icon: const Icon(Icons.filter_alt_outlined, color: Colors.black,),
-                          label: const Text("Filter", style: TextStyle(color: Colors.black),), //label text
+                          label: const Text("Filter", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),), //label text
                           style: ElevatedButton.styleFrom(
                               primary: Colors.white //elevated btton background color
                           ),
                         ),
                       ),
                       SizedBox(
-                        height:50, //height of button
-                        width:150,
+                        height:40, //height of button
+                        width:170,
                         child: ElevatedButton.icon(
                           onPressed: () { },
                           icon: const Icon(Icons.sort, color: Colors.black,),
-                          label: const Text("Sort", style: TextStyle(color: Colors.black),), //label text
+                          label: const Text("Sort", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),), //label text
                           style: ElevatedButton.styleFrom(
                               primary: Colors.white //elevated btton background color
                           ),
@@ -91,21 +91,22 @@ class _MyAppState extends State<MyApp> {
                     children:  [
                       Text(" New complaints"),
                       Text("Result per page"),
-                      DropdownButton<String>(
+                      DropdownButton<int>(
                         value: _selectedDropDownValue,
-                        items: <String>['A', 'B', 'C', 'D',].map((String value) {
-                          return DropdownMenuItem<String>(
+                        items: <int>[1,2,3,4,].map((int value) {
+                          return DropdownMenuItem<int>(
                             value: value,
-                            child: Text(value),
+                            child: Text(value.toString()),
                           );
                         }).toList(),
-                        onChanged:  ( val) {
-                          _selectedDropDownValue = val.toString();
+                        onChanged:  ( newVal) {
+                          _selectedDropDownValue = newVal!;
                           setState(() {
 
                           });
                         },
                       ),
+
                     ],
                   ),
                 ),
